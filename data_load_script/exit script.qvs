@@ -1,0 +1,4 @@
+///$tab exit script
+drop tables fr_manual_territory,FR_Hierarchy;
+
+exit script;

@@ -1,0 +1,10 @@
+///$tab 0_DOT_MAP
+// Manual input from HQ analytics team
+
+DOT_MAP:
+Mapping
+LOAD
+    formulation,
+    "Multiplier used to calculate DOT"
+FROM [lib://AttachedFiles/CU_into_DOT_Master_COMBINED_20210107.xlsx]
+(ooxml, embedded labels, table is GERS);

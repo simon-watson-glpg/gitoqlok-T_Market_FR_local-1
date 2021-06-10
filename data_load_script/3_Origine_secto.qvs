@@ -1,0 +1,96 @@
+///$tab 3_Origine_secto
+secto_origine_temp:
+LOAD
+    CleMoisAnnee as YearMonth,
+//    IdCodePresentation,
+    IdCodeEAN as product_code,
+    NomPresentation as product_name,
+    Facture as Type,
+    "Type" as specialty,
+    Secteur as territory,
+    Act,
+    Un,
+    replace(UnE,',','.') as UnE,
+    replace(CAPFHT,',','.') as CAPFHT,
+    CATTC
+FROM $(vGersOriginSecto)
+(txt, codepage is 28591, embedded labels, delimiter is ';', msq);
+
+
+ProductMaster_temp:
+LOAD
+    IdMarche,
+    NomLaboFabricant,
+    Composant,
+    NomComposant,
+    Presence,
+    Conversion,
+    CleR1,
+    NomR1 as molecule,
+    NomR2 as brand,
+    NomR3 as company,
+    NomR4 as strength
+FROM $(vGersProductMasterHop)
+(ooxml, embedded labels, table is Sheet2);
+
+
+
+Concatenate(ProductMaster_temp)
+LOAD
+    IdMarche,
+    NomLaboFabricant,
+    Composant,
+    NomComposant,
+    Presence,
+    Conversion,
+    NomR1  as brand,
+    NomR2 as company,
+    NomR3 as strength
+FROM $(vGersProductMasterOffice)
+(ooxml, embedded labels, table is Sheet2);
+
+
+
+left join (secto_origine_temp)
+Load
+    Composant as product_code,
+	firstvalue(NomLaboFabricant) as company,
+    firstvalue(NomComposant) as product_name,
+    upper(firstvalue(brand)) as brand,
+    firstvalue(strength) as strength
+Resident ProductMaster_temp
+group by Composant;
+
+drop table ProductMaster_temp;
+
+
+// LOAD DIM TABLE
+
+left join(secto_origine_temp)
+LOAD
+	*,
+    if(branded_biosim='BIOSIMILAR',class & ' BIOSIM',class) as class_type;
+LOAD
+    upper(brand) as brand,
+    FirstValue("class") as class,
+	Firstvalue(branded_biosim) as branded_biosim
+FROM [lib://Market View/1.QVD/2.Transform/t_dim_product.qvd]
+(qvd)
+group by upper(brand)
+;
+
+qualify *;
+OS:
+NoConcatenate
+Load	
+    *,
+    UnE * DOT_multiplier as dot_units,
+    (UnE * DOT_multiplier) / 30 as patient_equivalent;
+Load
+	*
+	,applymap('DOT_MAP',product_name,null()) as DOT_multiplier
+Resident
+secto_origine_temp;
+Unqualify *;
+
+drop table secto_origine_temp;

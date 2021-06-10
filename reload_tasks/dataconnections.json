@@ -1,0 +1,458 @@
+[
+  {
+    "id": "47a1cfd8-f70e-4a98-a00d-00fca6c8e253",
+    "createdDate": "2020-02-04T13:34:38.774Z",
+    "modifiedDate": "2020-02-04T13:34:38.774Z",
+    "modifiedByUserName": "INTERNAL\\sa_repository",
+    "customProperties": [],
+    "owner": {
+      "id": "8dbd2d0e-cb29-43b7-8849-693f06d94602",
+      "userId": "sa_repository",
+      "userDirectory": "INTERNAL",
+      "name": "sa_repository",
+      "privileges": null
+    },
+    "name": "AttachedFiles",
+    "connectionstring": "\\\\EC2AMAZ-G857BP8\\Qlik Sense Share\\StaticContent\\AppContent\\<APP_ID>",
+    "type": "folder",
+    "engineObjectId": "47a1cfd8-f70e-4a98-a00d-00fca6c8e253",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "d9b87c79-39df-4644-81d5-bbebb1b5c251",
+    "createdDate": "2020-02-04T13:41:37.316Z",
+    "modifiedDate": "2020-02-04T13:41:37.362Z",
+    "modifiedByUserName": "INTERNAL\\sa_api",
+    "customProperties": [],
+    "owner": {
+      "id": "3acbcb93-d830-4fb1-8446-f497140c0bbb",
+      "userId": "sa_api",
+      "userDirectory": "INTERNAL",
+      "name": "sa_api",
+      "privileges": null
+    },
+    "name": "DataPrepAppCache",
+    "connectionstring": "\\\\EC2AMAZ-G857BP8\\Qlik Sense Share\\Apps\\DataPrepAppCache\\<APP_ID>",
+    "type": "folder",
+    "engineObjectId": "d9b87c79-39df-4644-81d5-bbebb1b5c251",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "6ddc723e-66a6-44c7-803c-a4d561972698",
+    "createdDate": "2020-02-18T11:33:28.001Z",
+    "modifiedDate": "2020-12-15T14:49:03.920Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "45cfe8fc-4d51-4b30-b31f-ddb80e344ea6",
+        "createdDate": "2020-12-15T14:49:03.920Z",
+        "modifiedDate": "2020-12-15T14:49:03.920Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "AWS Athena Production",
+    "connectionstring": "ODBC CONNECT TO [Simba Athena Production;]",
+    "type": "ODBC",
+    "engineObjectId": "6ddc723e-66a6-44c7-803c-a4d561972698",
+    "username": "AKIAXFVKEMDDJWRGDPPC",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "406b304c-26d4-43e8-9e51-747649bb583f",
+    "createdDate": "2020-11-18T09:44:25.055Z",
+    "modifiedDate": "2020-12-15T14:45:43.116Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "7193eef2-452d-4a96-89c6-7c38ea52f9ec",
+        "createdDate": "2020-12-15T14:45:43.116Z",
+        "modifiedDate": "2020-12-15T14:45:43.116Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Executive View",
+    "connectionstring": "C:\\Qlik Data\\Executive View\\",
+    "type": "folder",
+    "engineObjectId": "406b304c-26d4-43e8-9e51-747649bb583f",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "7c66bd4d-4b0f-4801-89a1-91d071671c3b",
+    "createdDate": "2020-11-18T09:44:04.702Z",
+    "modifiedDate": "2020-12-15T14:45:53.567Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "627c90b7-cf5d-4af0-b6d7-23cc35fcef14",
+        "createdDate": "2020-12-15T14:45:53.567Z",
+        "modifiedDate": "2020-12-15T14:45:53.567Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Customer View",
+    "connectionstring": "C:\\Qlik Data\\Customer View\\",
+    "type": "folder",
+    "engineObjectId": "7c66bd4d-4b0f-4801-89a1-91d071671c3b",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "a9cc9d21-42e2-4f46-bf23-afed171b8198",
+    "createdDate": "2020-11-18T09:44:40.343Z",
+    "modifiedDate": "2020-12-15T14:46:09.017Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "b9063a62-745a-418f-8b24-27107c0823b8",
+        "createdDate": "2020-12-15T14:46:09.017Z",
+        "modifiedDate": "2020-12-15T14:46:09.017Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Market View",
+    "connectionstring": "C:\\Qlik Data\\Market View\\",
+    "type": "folder",
+    "engineObjectId": "a9cc9d21-42e2-4f46-bf23-afed171b8198",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "f9f80726-1a99-45b4-8137-e48a044d7474",
+    "createdDate": "2020-11-09T10:03:19.558Z",
+    "modifiedDate": "2020-12-15T14:49:27.729Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "ad9d2bc0-cce7-4fd8-9cd4-c9710781e85d",
+        "createdDate": "2020-12-15T14:49:27.729Z",
+        "modifiedDate": "2020-12-15T14:49:27.729Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "GLPG DataPlatform Production",
+    "connectionstring": "CUSTOM CONNECT TO \"provider=QvOdbcConnectorPackage.exe;driver=postgres;host=glpg-dataplatform.cnc3xukclhzp.eu-west-1.rds.amazonaws.com;port=5432;db=glpg_dataplatform;SSLMode=prefer;UseSystemTrustStore=false;ByteaAsLongVarBinary=0;TextAsLongVarchar=0;UseUnicode=1;FetchTSWTZasTimestamp=1;MaxVarcharSize=262144;UseDeclareFetch=1;Fetch=200;EnableTableTypes=1;MoneyAsDecimal=1;QueryTimeout=30;\"",
+    "type": "QvOdbcConnectorPackage.exe",
+    "engineObjectId": "f9f80726-1a99-45b4-8137-e48a044d7474",
+    "username": "qlik",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "35a6c930-d6d4-42f8-bd6e-beee775e63d3",
+    "createdDate": "2020-12-15T14:50:33.385Z",
+    "modifiedDate": "2020-12-15T14:50:51.717Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "e766ea7c-9308-4853-b0bb-b912422a4c4b",
+        "createdDate": "2020-12-15T14:50:51.717Z",
+        "modifiedDate": "2020-12-15T14:50:51.717Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "All",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Qlik System Variables",
+    "connectionstring": "C:\\Qlik Data\\99.Shared_Folders\\3.Include\\1.BaseVariable\\",
+    "type": "folder",
+    "engineObjectId": "35a6c930-d6d4-42f8-bd6e-beee775e63d3",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "4474d9d6-a6c2-4f31-8513-1136325bc2c4",
+    "createdDate": "2020-11-09T12:14:59.511Z",
+    "modifiedDate": "2020-12-17T16:04:08.539Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "fb759dd5-34a2-4cf5-9028-cce2dbd64157",
+        "createdDate": "2020-12-17T16:04:08.539Z",
+        "modifiedDate": "2020-12-17T16:04:08.539Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "All",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Qlik Apps",
+    "connectionstring": "C:\\Qlik Sense Share\\Apps\\",
+    "type": "folder",
+    "engineObjectId": "4474d9d6-a6c2-4f31-8513-1136325bc2c4",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "c7ad241e-dc99-4105-93bf-d4b83c838038",
+    "createdDate": "2020-12-17T16:16:24.925Z",
+    "modifiedDate": "2020-12-17T16:16:38.960Z",
+    "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+    "customProperties": [
+      {
+        "id": "7182503a-30f8-441d-a552-dc82aeb06569",
+        "createdDate": "2020-12-17T16:16:38.960Z",
+        "modifiedDate": "2020-12-17T16:16:38.960Z",
+        "modifiedByUserName": "EC2AMAZ-G857BP8\\qlik_administrator",
+        "value": "Commercial",
+        "definition": {
+          "id": "20076e0c-a057-4889-af6e-f0a31ca5cac9",
+          "name": "Department",
+          "valueType": "Text",
+          "choiceValues": [
+            "All",
+            "Commercial",
+            "Financial",
+            "R&D PM"
+          ],
+          "privileges": null
+        },
+        "schemaPath": "CustomPropertyValue"
+      }
+    ],
+    "owner": {
+      "id": "08d9665a-90a9-4684-8ca9-56ba5a1db737",
+      "userId": "qlik_administrator",
+      "userDirectory": "EC2AMAZ-G857BP8",
+      "name": "qlik_administrator",
+      "privileges": null
+    },
+    "name": "Jyseleca",
+    "connectionstring": "C:\\Qlik Data\\Jyseleca\\",
+    "type": "folder",
+    "engineObjectId": "c7ad241e-dc99-4105-93bf-d4b83c838038",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "22dca001-c359-45a5-9698-63cf26f3c217",
+    "createdDate": "2020-12-17T08:35:50.419Z",
+    "modifiedDate": "2021-06-03T07:09:34.068Z",
+    "modifiedByUserName": "AD\\simon.watson@glpg.com",
+    "customProperties": [],
+    "owner": {
+      "id": "99a155fe-e6b7-44c0-97f9-a6bd0e9f4a9c",
+      "userId": "simon.watson@glpg.com",
+      "userDirectory": "AD",
+      "name": "simon.watson@glpg.com",
+      "privileges": null
+    },
+    "name": "Salesforce_BULK (ad_simon.watson@glpg.com)",
+    "connectionstring": "CUSTOM CONNECT TO \"provider=QvSalesforceConnector.exe;mode=BULK;timeout=100;batchSize=500;plainQueriesOnly=true;convertSQLdates=false;booleanAsStrings=false;convertUTCToLocalTime=false;pkChunking=false;chunkSize=100000;threadCount=2;statusCallsInterval=Auto;ProxyAuthentication=0;\"",
+    "type": "QvSalesforceConnector.exe",
+    "engineObjectId": "22dca001-c359-45a5-9698-63cf26f3c217",
+    "username": "simon.watson1@glpg.com",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  },
+  {
+    "id": "3050bd4e-93e9-474b-81de-b49c1b41e684",
+    "createdDate": "2021-04-20T08:18:05.078Z",
+    "modifiedDate": "2021-04-20T08:18:05.078Z",
+    "modifiedByUserName": "AD\\simon.watson@glpg.com",
+    "customProperties": [],
+    "owner": {
+      "id": "99a155fe-e6b7-44c0-97f9-a6bd0e9f4a9c",
+      "userId": "simon.watson@glpg.com",
+      "userDirectory": "AD",
+      "name": "simon.watson@glpg.com",
+      "privileges": null
+    },
+    "name": "tardis_molecule (ad_simon.watson@glpg.com)",
+    "connectionstring": "https://www.healthstat.be/#/report/58",
+    "type": "internet",
+    "engineObjectId": "3050bd4e-93e9-474b-81de-b49c1b41e684",
+    "username": "",
+    "logOn": 0,
+    "architecture": 0,
+    "tags": [],
+    "privileges": null,
+    "schemaPath": "DataConnection"
+  }
+]

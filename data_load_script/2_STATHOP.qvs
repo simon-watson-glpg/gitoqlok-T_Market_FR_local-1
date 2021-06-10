@@ -1,0 +1,169 @@
+///$tab 2_STATHOP
+STATHOP:
+LOAD
+	'STATHOP' as Type,
+	CodePeriode as YearMonth,
+//     NiveauPeriode,
+    CodeProduit as product_code,
+//     NiveauProduit,
+    CodeGeographie,
+//     NiveauGeographie,
+//     CodeType,
+//     NiveauType,
+    replace(UNE,',','.') as UNE,
+    replace(CAHT,',','.') as CAHT
+FROM $(vGersStathop)
+(txt, codepage is 28592, embedded labels, delimiter is ';', msq)
+WHERE CodeProduit <> '0'
+;
+
+
+NoConcatenate
+min_max:
+LOAD
+     min(Num#(YearMonth)) as YearMonth
+Resident
+STATHOP;
+
+let vMin_GERS = Peek('YearMonth',0,'min_max'); 
+
+drop table min_max;
+
+
+
+
+// Add historic data file - no requirement to refresh data set
+
+LOAD
+	'STATHOP' as Type,
+	CodePeriode as YearMonth,
+//     NiveauPeriode,
+    CodeProduit as product_code,
+//     NiveauProduit,
+    CodeGeographie,
+//     NiveauGeographie,
+//     CodeType,
+//     NiveauType,
+    replace(UNE,',','.') as UNE,
+    replace(CAHT,',','.') as CAHT
+FROM [lib://AttachedFiles/GAL_BIOTHERAPIESSTATHOP_STATHOP_PDV_4358030001000103_M201912.csv]
+(txt, codepage is 28592, embedded labels, delimiter is ';', msq)
+where CodePeriode < $(vMin_GERS) and CodePeriode >= '201707'
+;
+
+
+
+
+left join (STATHOP)
+LOAD
+    NomLaboFabricant  as company,
+    Composant as product_code,
+    NomComposant as product_name,
+    NomR2 as brand,
+    NomR1 as sub_class_stathop
+FROM $(vGersStathopExcel)
+(ooxml, embedded labels, table is Sheet2);
+
+left join (STATHOP)
+LOAD
+    "PV" as CodeGeographie,
+	COD_UGA,
+    "Nom PV" as HCO    
+FROM $(vGersPDV)
+(txt, codepage is 28591, embedded labels, delimiter is ';', msq);
+
+
+// LOAD DIM TABLE
+
+left join(STATHOP)
+LOAD
+	*,
+    if(branded_biosim='BIOSIMILAR',class & ' BIOSIM',class) as class_type;
+LOAD
+    upper(brand) as brand,
+    FirstValue("class") as class,
+	Firstvalue(branded_biosim) as branded_biosim
+FROM [lib://Market View/1.QVD/2.Transform/t_dim_product.qvd]
+(qvd)
+group by upper(brand)
+;
+
+Concatenate (gers_local)
+Load
+	Type,
+	YearMonth,
+    company,
+    ApplyMap('fr_territory_map',COD_UGA,null()) as territory,
+    product_code,
+    product_name,
+    COD_UGA as UGA,
+    brand,
+    class,
+    sub_class_stathop as sub_class,
+    class_type,
+    HCO,
+    UNE as UnE,
+    CAHT AS CAPFHT
+Resident STATHOP;
+
+drop table STATHOP;
+
+
+// ADDITION OF DOT CALCULATION
+
+rename table gers_local to gers_local_temp;
+
+
+gers_local:
+Load
+	*
+    ,UnE * DOT_multiplier as dot_units
+    ,(UnE * DOT_multiplier) / 30 as patient_equivalent
+    ,((year(GERS_date)*12)+month(GERS_date)) - (((year(EMA_date)*12)+month(EMA_date))) as Months_since_EMA
+    ;
+Load
+	*
+	,applymap('DOT_MAP',product_name,null()) as DOT_multiplier
+    ,Date(Date#(ApplyMap('EMA_dates',brand,Null()),'YYYYMMDD'),'DD/MM/YYYY') as EMA_date
+    ,Date(Date#(YearMonth,'YYYYMM'),'DD/MM/YYYY') as GERS_date
+Resident
+gers_local_temp;
+
+drop Table gers_local_temp;
+
+ 
+Concatenate (gers_local)
+Load * Inline [
+brand, Months_since_EMA, class_type
+OLUMIANT,	1, JAK-i
+OLUMIANT,	2, JAK-i
+OLUMIANT,	3, JAK-i
+OLUMIANT,	4, JAK-i
+OLUMIANT,	5, JAK-i
+OLUMIANT,	6, JAK-i
+XELJANZ,	1, JAK-i
+XELJANZ,	2, JAK-i
+XELJANZ,	3, JAK-i
+XELJANZ,	4, JAK-i
+XELJANZ,	5, JAK-i
+XELJANZ,	6, JAK-i
+XELJANZ,	7, JAK-i
+XELJANZ,	8, JAK-i
+RINVOQ,		1, JAK-i
+RINVOQ,		2, JAK-i
+RINVOQ,		3, JAK-i
+RINVOQ,		4, JAK-i
+RINVOQ,		5, JAK-i
+RINVOQ,		6, JAK-i
+]
+;
+
+
+left Join (gers_local)
+Load
+  "Territory Name" 		as territory,
+  "National Manager" 	as national_manager,
+  "District Manager" 	as district_manager,
+  Reps 					as TSR
+FROM [lib://AttachedFiles/Territory Structure - 2021-01-08.xlsx]
+(ooxml, embedded labels, table is Infos);

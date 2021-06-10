@@ -1,0 +1,10 @@
+///$tab 0_EMA_MAP
+EMA_dates:
+Mapping
+Load * Inline [
+    brand,			EMA_Date
+    OLUMIANT,		20170201 
+    XELJANZ,		20170301
+    RINVOQ,			20191201
+    JYSELECA,		20200901
+];

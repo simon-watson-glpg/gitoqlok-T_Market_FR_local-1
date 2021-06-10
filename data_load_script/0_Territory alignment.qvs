@@ -1,0 +1,37 @@
+///$tab 0_Territory alignment
+// Manual input from Vincent Daval
+
+fr_manual_territory:
+LOAD
+    UGA,
+    "UGA Name",
+    ARS,
+    "Projet- 22 secteurs",
+    "Territory Name",
+    "TSR Name",
+    District,
+    "District Manager"
+
+FROM [lib://AttachedFiles/Territory Structure - 2021-01-08.xlsx]
+(ooxml, embedded labels, table is [Territory Structure]);
+
+fr_territory_map:
+Mapping
+Load
+	UGA,
+    "Territory Name"
+Resident
+fr_manual_territory;
+
+// Manual input from Vincent Daval
+
+FR_Hierarchy:
+LOAD
+    "National Territory",
+    "National Manager",
+    "District Name",
+    "District Manager",
+    "Territory Name",
+    	Reps
+FROM [lib://AttachedFiles/Territory Structure - 2021-01-08.xlsx]
+(ooxml, embedded labels, table is Infos);
