@@ -22,10 +22,16 @@ SET NumericalAbbreviation='3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m;-6:μ;-9:n;
 
 Set vQVD_Migration_Path = 'lib://Market View/1.QVD/5.Migration/';
 
-Set vGersOrigin 				= 'lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGIN_ORIGIN_UGA_4358010001000701_M202104.CSV';
-Set vGersProductMasterHop 		= 'lib://AttachedFiles/GAL_GALAPAGOSHOP_SIG_UGA_4358070001000101_M202104.xlsx';
-Set vGersProductMasterOffice 	= 'lib://AttachedFiles/GAL_GALAPAGOSOFFICINE_SIG_UGA_4358050001000101_M202104.xlsx';
-Set vGersStathop				= 'lib://AttachedFiles/GAL_BIOTHERAPIESSTATHOP_STATHOP_PDV_4358030001000101_M202104.csv';
-Set vGersStathopExcel			= 'lib://AttachedFiles/GAL_BIOTHERAPIESSTATHOP_STATHOP_PDV_4358030001000101_M202104.xlsx';
-Set vGersOriginSecto			= 'lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGINSPE_ORIGINS_SECTO_4358020001000701_M202104.csv';
-Set vGersPDV					= 'lib://AttachedFiles/PDVTOTREP_202104.csv';
+Set vGersOrigin 				= 'lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGIN_ORIGIN_UGA_4358010001000701_M202105.CSV'; //y
+Set vGersProductMasterHop 		= 'lib://AttachedFiles/GAL_GALAPAGOSHOP_SIG_UGA_4358070001000101_M202105.xlsx';  //y
+Set vGersProductMasterOffice 	= 'lib://AttachedFiles/GAL_GALAPAGOSOFFICINE_SIG_UGA_4358050001000101_M202105.xlsx'; //y
+Set vGersStathop				= 'lib://AttachedFiles/GAL_BIOTHERAPIESSTATHOP_STATHOP_PDV_4358030001000101_M202105.csv'; //y
+Set vGersStathopExcel			= 'lib://AttachedFiles/GAL_BIOTHERAPIESSTATHOP_STATHOP_PDV_4358030001000101_M202105.xlsx'; //y
+Set vGersOriginSecto			= 'lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGINSPE_ORIGINS_SECTO_4358020001000701_M202105.csv'; //y
+Set vGersPDV					= 'lib://AttachedFiles/PDVTOTREP_202105.csv'; //y
+
+/*
+Two history files have been provided:
+1. Stathop
+2. GERS Origin
+*/

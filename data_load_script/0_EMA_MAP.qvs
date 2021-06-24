@@ -8,3 +8,13 @@ Load * Inline [
     RINVOQ,			20191201
     JYSELECA,		20200901
 ];
+
+Reimbursement_dates:
+Mapping
+Load * Inline [
+    brand,			EMA_Date
+    OLUMIANT,		20170901 
+    XELJANZ,		20171101
+    RINVOQ,			20200701
+    JYSELECA,		20210501
+];

@@ -33,8 +33,6 @@ LOAD
 FROM $(vGersProductMasterHop)
 (ooxml, embedded labels, table is Sheet2);
 
-
-
 Concatenate(ProductMaster_temp)
 LOAD
     IdMarche,
@@ -48,8 +46,6 @@ LOAD
     NomR3 as strength
 FROM $(vGersProductMasterOffice)
 (ooxml, embedded labels, table is Sheet2);
-
-
 
 left join (secto_origine_temp)
 Load

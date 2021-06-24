@@ -120,11 +120,13 @@ Load
     ,UnE * DOT_multiplier as dot_units
     ,(UnE * DOT_multiplier) / 30 as patient_equivalent
     ,((year(GERS_date)*12)+month(GERS_date)) - (((year(EMA_date)*12)+month(EMA_date))) as Months_since_EMA
+    ,((year(GERS_date)*12)+month(GERS_date)) - (((year(Reimbursement_date)*12)+month(Reimbursement_date))) as Months_since_Reimbursement    
     ;
 Load
 	*
 	,applymap('DOT_MAP',product_name,null()) as DOT_multiplier
     ,Date(Date#(ApplyMap('EMA_dates',brand,Null()),'YYYYMMDD'),'DD/MM/YYYY') as EMA_date
+	,Date(Date#(ApplyMap('Reimbursement_dates',brand,Null()),'YYYYMMDD'),'DD/MM/YYYY') as Reimbursement_date    
     ,Date(Date#(YearMonth,'YYYYMM'),'DD/MM/YYYY') as GERS_date
 Resident
 gers_local_temp;
