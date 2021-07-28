@@ -1,4 +1,8 @@
 ///$tab 0_Territory alignment
+/* 
+Temporary load into GERS data - long term will transition to vAlign and remove
+*/
+
 // Manual input from Vincent Daval
 
 fr_manual_territory:
@@ -11,7 +15,6 @@ LOAD
     "TSR Name",
     District,
     "District Manager"
-
 FROM [lib://AttachedFiles/Territory Structure - 2021-01-08.xlsx]
 (ooxml, embedded labels, table is [Territory Structure]);
 

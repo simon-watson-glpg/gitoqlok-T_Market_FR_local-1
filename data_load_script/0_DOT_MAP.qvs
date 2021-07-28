@@ -1,4 +1,8 @@
 ///$tab 0_DOT_MAP
+/*
+Use the new dot.dim file rather than the table below
+*/
+
 // Manual input from HQ analytics team
 
 DOT_MAP:

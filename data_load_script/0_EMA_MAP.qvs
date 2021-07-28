@@ -1,4 +1,9 @@
 ///$tab 0_EMA_MAP
+/* 
+Creation of look up table
+Static never changing tables
+*/
+
 EMA_dates:
 Mapping
 Load * Inline [
@@ -12,7 +17,7 @@ Load * Inline [
 Reimbursement_dates:
 Mapping
 Load * Inline [
-    brand,			EMA_Date
+    brand,			Reimbursement_Date
     OLUMIANT,		20170901 
     XELJANZ,		20171101
     RINVOQ,			20200701

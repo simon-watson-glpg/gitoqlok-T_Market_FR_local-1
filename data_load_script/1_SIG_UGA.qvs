@@ -1,4 +1,9 @@
 ///$tab 1_SIG_UGA
+/*
+1. Rename for ease of human reading
+2. Applymap to bring in the territory based on IDcodegeographie
+*/
+
 gers_local:
 LOAD
       "Type" as Type,
@@ -7,12 +12,17 @@ LOAD
       IdCodeGeographie as UGA,
       ApplyMap('fr_territory_map',IdCodeGeographie,null()) as territory,
       Act,
-      replace(Un,',','.') as Un,
+// Number format is French locale in raw, need to transform to decimal strucutre
+	replace(Un,',','.') as Un,
       replace(UnE,',','.') as UnE, // Single Unit 
       replace(CAPFHT,',','.') as CAPFHT, // Sales value in euro
       CATTC
 FROM $(vGersOrigin)
 (txt, codepage is 28591, embedded labels, delimiter is ';', msq);
+
+/*
+Identify the minimum date in the current data file, so as to avoid overlap
+*/
 
 NoConcatenate
 min_max:
@@ -25,89 +35,97 @@ let vMin_GERS = Peek('YearMonth',0,'min_max');
 
 drop table min_max;
 
-Pack_to_units:
-mapping
-load * Inline [
-product_code,	packs
-3400930116500,1
-3400930116494,1
-3400930172766,1
-3400930042489,2
-3400930042687,2
-3400941851728,2
-3400936223059,2
-3400930126165,2
-3400930157374,2
-3400930157404,2
-3400930155080,2
-3400930172780,2
-3400930172797,2
-3400930157428,2
-3400930178805,3
-3400921676327,4
-3400926884376,4
-3400936064997,4
-3400937719100,4
-3400937719568,4
-3400939605227,4
-3400930111017,4
-3400930087367,28
-3400930087398,28
-3400930088111,56
-3400930159453,56
-3400927568312,1
-3400927568480,1
-3400939730745,1
-3400939730974,1
-3400930141762,1
-3400930142288,1
-3400930141724,1
-3400930144114,1
-3400930143711,1
-3400930076286,2
-3400939732008,2
-3400930100608,2
-3400930100615,2
-3400930100622,2
-3400930100639,2
-3400930141731,2
-3400930141779,2
-3400930143728,2
-3400930144121,2
-3400930155097,2
-3400927824845,4
-3400930019207,4
-3400930044599,4
-3400930044605,4
-3400930098950,4
-3400930098967,4
-3400930092675,4
-3400930098943,4
-3400930145524,4
-3400930141809,6
-3400930141755,6
+        /*
+        Historic files are inaccurate, they are missing the pack
+        In the file the Un is the same as the UnE
+        */
 
+        Pack_to_units:
+        mapping
+        load * Inline [
+        product_code,	packs
+        3400930116500,1
+        3400930116494,1
+        3400930172766,1
+        3400930042489,2
+        3400930042687,2
+        3400941851728,2
+        3400936223059,2
+        3400930126165,2
+        3400930157374,2
+        3400930157404,2
+        3400930155080,2
+        3400930172780,2
+        3400930172797,2
+        3400930157428,2
+        3400930178805,3
+        3400921676327,4
+        3400926884376,4
+        3400936064997,4
+        3400937719100,4
+        3400937719568,4
+        3400939605227,4
+        3400930111017,4
+        3400930087367,28
+        3400930087398,28
+        3400930088111,56
+        3400930159453,56
+        3400927568312,1
+        3400927568480,1
+        3400939730745,1
+        3400939730974,1
+        3400930141762,1
+        3400930142288,1
+        3400930141724,1
+        3400930144114,1
+        3400930143711,1
+        3400930076286,2
+        3400939732008,2
+        3400930100608,2
+        3400930100615,2
+        3400930100622,2
+        3400930100639,2
+        3400930141731,2
+        3400930141779,2
+        3400930143728,2
+        3400930144121,2
+        3400930155097,2
+        3400927824845,4
+        3400930019207,4
+        3400930044599,4
+        3400930044605,4
+        3400930098950,4
+        3400930098967,4
+        3400930092675,4
+        3400930098943,4
+        3400930145524,4
+        3400930141809,6
+        3400930141755,6
+        ];
 
-];
+        // Add historic data file - no requirement to refresh data set
+        Concatenate (gers_local)
+        LOAD
+              "Type" as Type,
+              CleMoisAnnee as YearMonth,
+              IdCodeEAN as product_code,
+              IdCodeGeographie as UGA,
+              ApplyMap('fr_territory_map',IdCodeGeographie,null()) as territory,
+              Act,
+              replace(Un,',','.') as Un,
+              ApplyMap('Pack_to_units',IdCodeEAN,null()) * replace(UnE,',','.') as UnE, // Single Unit 
+              replace(CAPFHT,',','.') as CAPFHT, // Sales value in euro
+              CATTC
+        FROM [lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGIN_ORIGIN_UGA_4358010001000701_M202006 (1).CSV]
+        (txt, codepage is 28591, embedded labels, delimiter is ';', msq)
+        where CleMoisAnnee < $(vMin_GERS)
+        ;
 
-// Add historic data file - no requirement to refresh data set
-Concatenate (gers_local)
-LOAD
-      "Type" as Type,
-      CleMoisAnnee as YearMonth,
-      IdCodeEAN as product_code,
-      IdCodeGeographie as UGA,
-      ApplyMap('fr_territory_map',IdCodeGeographie,null()) as territory,
-      Act,
-      replace(Un,',','.') as Un,
-      ApplyMap('Pack_to_units',IdCodeEAN,null()) * replace(UnE,',','.') as UnE, // Single Unit 
-      replace(CAPFHT,',','.') as CAPFHT, // Sales value in euro
-      CATTC
-FROM [lib://AttachedFiles/GAL_BIOTHERAPIESGERSORIGIN_ORIGIN_UGA_4358010001000701_M202006 (1).CSV]
-(txt, codepage is 28591, embedded labels, delimiter is ';', msq)
-where CleMoisAnnee < $(vMin_GERS)
-;
-
+/*
+Specific GERS dim tables = Local master
+Input into Global master
+Input into DOT Master
+*/
 
 ProductMaster_temp:
 LOAD
@@ -124,7 +142,6 @@ LOAD
     NomR4 as strength
 FROM $(vGersProductMasterHop)
 (ooxml, embedded labels, table is Sheet2);
-
 
 Concatenate(ProductMaster_temp)
 LOAD

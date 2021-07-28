@@ -1,0 +1,102 @@
+///$tab 3_CONCAT_DOT
+/*
+Bring Gers Local and Stathop into a single table
+*/
+
+Concatenate (gers_local)
+Load
+	Type,
+	YearMonth,
+    company,
+    ApplyMap('fr_territory_map',COD_UGA,null()) as territory,
+    product_code,
+    product_name,
+    COD_UGA as UGA,
+    brand,
+    class,
+    sub_class_stathop as sub_class,
+    class_type,
+    HCO,
+    UNE as UnE,
+    CAHT AS CAPFHT
+Resident STATHOP;
+
+drop table STATHOP;
+
+
+// ADDITION OF DOT CALCULATION AND DATE MILESTONES
+
+rename table gers_local to gers_local_temp;
+
+/*
+Example output
+Months since EMA = current date - 20170201 in months =
+Months since EMA = 20190201 - 20170201 in months = 24
+*/
+
+gers_local:
+Load
+	*
+    ,UnE * DOT_multiplier as dot_units
+    ,(UnE * DOT_multiplier) / 30 as patient_equivalent
+    ,((year(GERS_date)*12)+month(GERS_date)) - (((year(EMA_date)*12)+month(EMA_date))) as Months_since_EMA
+    ,((year(GERS_date)*12)+month(GERS_date)) - (((year(Reimbursement_date)*12)+month(Reimbursement_date))) as Months_since_Reimbursement    
+    ;
+Load
+	*
+	,applymap('DOT_MAP',product_name,null()) as DOT_multiplier
+    ,Date(Date#(ApplyMap('EMA_dates',brand,Null()),'YYYYMMDD'),'DD/MM/YYYY') as EMA_date
+	,Date(Date#(ApplyMap('Reimbursement_dates',brand,Null()),'YYYYMMDD'),'DD/MM/YYYY') as Reimbursement_date    
+    ,Date(Date#(YearMonth,'YYYYMM'),'DD/MM/YYYY') as GERS_date
+Resident
+gers_local_temp
+Where not isnull(UnE)
+;
+
+drop Table gers_local_temp;
+
+
+/*
+Not needed in database
+To define missing dates for front end visualisation
+*/
+ 
+Concatenate (gers_local)
+Load * Inline [
+brand, 		Months_since_EMA, 	class_type
+OLUMIANT,	1, 					JAK-i
+OLUMIANT,	2, 					JAK-i
+OLUMIANT,	3, 					JAK-i
+OLUMIANT,	4, JAK-i
+OLUMIANT,	5, JAK-i
+OLUMIANT,	6, JAK-i
+XELJANZ,	1, JAK-i
+XELJANZ,	2, JAK-i
+XELJANZ,	3, JAK-i
+XELJANZ,	4, JAK-i
+XELJANZ,	5, JAK-i
+XELJANZ,	6, JAK-i
+XELJANZ,	7, JAK-i
+XELJANZ,	8, JAK-i
+RINVOQ,		1, JAK-i
+RINVOQ,		2, JAK-i
+RINVOQ,		3, JAK-i
+RINVOQ,		4, JAK-i
+RINVOQ,		5, JAK-i
+RINVOQ,		6, JAK-i
+]
+;
+
+/*
+Addition of the territory details
+Based on territory assignment - temporary table will move to valign
+*/
+
+left Join (gers_local)
+Load
+  "Territory Name" 		as territory,
+  "National Manager" 	as national_manager,
+  "District Manager" 	as district_manager,
+  Reps 					as TSR
+FROM [lib://AttachedFiles/Territory Structure - 2021-01-08.xlsx]
+(ooxml, embedded labels, table is Infos);

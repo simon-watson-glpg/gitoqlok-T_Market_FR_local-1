@@ -16,6 +16,11 @@ LOAD
 FROM $(vGersOriginSecto)
 (txt, codepage is 28591, embedded labels, delimiter is ';', msq);
 
+/*
+Specific GERS dim tables = Local master
+Input into Global master
+Input into DOT Master
+*/
 
 ProductMaster_temp:
 LOAD
@@ -59,7 +64,6 @@ group by Composant;
 
 drop table ProductMaster_temp;
 
-
 // LOAD DIM TABLE
 
 left join(secto_origine_temp)
@@ -74,6 +78,9 @@ FROM [lib://Market View/1.QVD/2.Transform/t_dim_product.qvd]
 (qvd)
 group by upper(brand)
 ;
+
+
+
 
 qualify *;
 OS:
